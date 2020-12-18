@@ -1,0 +1,27 @@
+<% if @book.errors.any? %>
+  <div>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+      <li>error</li>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+ <h1>Editing Book</h1>
+
+<%= form_with model:@book, local: true do |f| %>
+ <diV>
+  <h4>Title</h4><%= f.text_field :title %>
+ </diV>
+
+ <diV>
+  <h4>Opinion</h4><%= f.text_area :body %>
+ </diV>
+
+  <%= f.submit 'Update Book' %>
+
+  <%= link_to "Back", books_path %>
+  <%= link_to "Show", book_path(@book.id)  %>
+ <% end %>
