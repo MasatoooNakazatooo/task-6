@@ -3,7 +3,8 @@ class FavoritesController < ApplicationController
         @book = Book.find(params[:book_id])
         @favorite = @book.favorites.new(user_id: current_user.id)
         # byebug
-        @favorite.save 
+        @favorite.save
+        # byebug
         # redirect_to request.referer
         # redirect_back(fallback_location: root_path)
     end

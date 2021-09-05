@@ -8,15 +8,15 @@
 
       <% if @book.user_id == current_user.id %>
       <table class="table">
-        
+
         <tbody>
 
           <tr>
-            
+
             <td><%= link_to user_path(@book.user.id) do %><%= attachment_image_tag @book.user, :profile_image, fallback: "no-image.png", class: "image" %><br><%= @user.name %><% end %></td>
 
-            <td><%= render "favorites/favorite", book: @book %></td>
-            
+            <td  class="likes_buttons_<%= @book.id %>"><%= render "favorites/favorite", book: @book %></td>
+
             <td><%= link_to @book.title, book_path(@book) %></td>
 
             <td><%= @book.body %></td>
@@ -34,14 +34,16 @@
       <tbody>
 
           <tr>
-            
+
             <td><%= link_to user_path(@book.user.id) do %><%= attachment_image_tag @book.user, :profile_image, fallback: "no-image.png", class: "image" %><br><%= @user.name %><% end %></td>
-          
+
             <td><%= link_to @book.title, book_path(@book.id) %></td>
 
             <td><%= @book.body %></td>
+            <div>
+            <td class="likes_buttons_<%= @book.id %>"><%= render "favorites/favorite", book: @book %></td>
+            </div>
 
-            <td id="likes_buttons_<%= @book.id %>" ><%= render "favorites/favorite", book: @book %></td>
 
           </tr>
 
@@ -50,7 +52,7 @@
       <%end%>
         <%= form_with model:[@book, @comment], remote: true do |f| %>
           <%= f.text_field :comment, rows:'5',placeholder: "コメントをここに", id: "comment_content"  %>
-          <%= f.submit "送信する" %> 
+          <%= f.submit "送信する" %>
         <%end%>
       <span id="comment">
       <%= render "book_comments/comments", comments: @comments %>
