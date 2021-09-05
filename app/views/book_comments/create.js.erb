@@ -1,0 +1,2 @@
+$('#comment_content').val('')
+$('#comment').html("<%= j(render 'book_comments/comments', comments: @comment.book.book_comments ) %>")

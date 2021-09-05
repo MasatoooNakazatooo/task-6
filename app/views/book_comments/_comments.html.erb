@@ -1,0 +1,23 @@
+<table>
+    <thead>
+        <tr>
+            <th>名前</th><th>コメント</th>
+        </tr>
+    </thead>
+    <% comments.each do |comment| %>
+    <tbody>
+        <tr>
+            <td><%= comment.user.name %></td>
+            <td><%= comment.comment %></td>
+            <td><%= link_to "Destroy", book_book_comment_path(comment.book_id, comment.id ), method: :delete, remote: true %></td>
+        </tr>
+     </tbody>
+    <%end%>
+</table>
+
+
+   <%# attachment_image_tag comment.user, :profile_image, :fill, 50, 50, %>
+
+
+
+<%#= paginate @book_comments %>

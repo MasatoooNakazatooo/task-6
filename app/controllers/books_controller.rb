@@ -19,14 +19,18 @@ before_action :authenticate_user!
 
   def show
     if user_signed_in?
-    #show.html.erbのログイン中のユーザーの投稿内容取得のためBookモデルのuser_idとログイン中のidが一致するものすべてをとっている
-    @books = Book.find(params[:id])
-    #bookモデルのuser_id
-    @user = User.find(@books.user_id)
-
-    #form_withに必要な記述
-    @book = Book.new
-
+      #show.html.erbのログイン中のユーザーの投稿内容取得のためBookモデルのuser_idとログイン中のidが一致するものすべてをとっている
+      @book = Book.find(params[:id])
+      #bookモデルのuser_id
+      @user = User.find(@book.user_id)
+      
+      #form_withに必要な記述
+      @book_new = Book.new
+      
+      @comments = @book.book_comments
+      @comment = BookComment.new
+      # byebug
+      # @book_comments = BookComment.page(params[:page]).reverse_order
     else
       redirect_to new_user_session_path
     end
